@@ -22,7 +22,7 @@ class Home extends Component {
   }
 
   fetchComicxkcd = async () => {
-    const random = Math.floor(Math.random() * 50);
+    const random = Math.floor(Math.random() * 100) + 1;
     const url = `https://xkcd.com/${random}/info.0.json`;
     this.setState({ loading: true });
     const data = await axios(url)
@@ -91,14 +91,16 @@ class Home extends Component {
         <div className="row">
           <div className="col-xs-12 mx-auto">
             <div className="min-vh-100 d-flex flex-column justify-content-center align-items-center">
-              <h1>{comic.title}</h1>
+              <h1 className="mb-2">{comic.title}</h1>
               <figure>
                 <img src={comic.img} alt={comic.alt} />
               </figure>
-              <div>
+              <div className="d-flex  flex-column justify-content-center align-items-center">
+                <h4>Votes here for this comic</h4>
                 <div className="rate" onClick={this.handleRating}>
                   {this.renderRating()}
                 </div>
+                <p>(click on a star)</p>
               </div>
             </div>
           </div>
