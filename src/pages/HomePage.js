@@ -22,10 +22,13 @@ class Home extends Component {
   }
 
   fetchComicxkcd = async () => {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const url1 = "https://xkcd.com"; // site that doesn’t send Access-Control-*
+
     const random = Math.floor(Math.random() * 100) + 1;
-    const url = `https://xkcd.com/${random}/info.0.json`;
+    const url = `${url1}/${random}/info.0.json`;
     this.setState({ loading: true });
-    const data = await axios(url)
+    const data = await axios(proxyurl+url)
       .then(response => response.data)
       .catch(error => {
         console.log(error);
